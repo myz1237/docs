@@ -20,8 +20,7 @@ Unlike the rest of the Nym codebase, the Nym Desktop Wallet is currently built v
 - `git`
 
 ```
-sudo apt update
-sudo apt install git
+sudo apt update && sudo apt install git
 ```
 
 Verify `git` is installed with:
@@ -31,15 +30,52 @@ git version
 # Should return: git version X.Y.Z
 ```
 
-- `Yarn`
+- `Yarn` 
 
-- `NodeJS >= v16.8.0`
+- `NodeJS >= v16.8.0 <= v17.0.1`
+
+Check your version with: 
+
+```
+node -v
+# Should return: v16.8.0
+```
+
+It is recommended to use [nvm](https://github.com/nvm-sh/nvm) for NodeJS versions management. 
 
 - `Rust & cargo >= v1.56`
+
+Verify the version and if cargo is in your path:
+
+```
+cargo --version
+# Should return: cargo 1.56.0 (4ed5d137b 2021-10-04)
+```
+
+If cargo is not in your $PATH, then add it with following command(depends on your installation and user) to your .bashrc or other:
+
+```
+echo "export PATH=$PATH:$HOME/cargo/env" | tee -a ~/.bashrc
+```
 
 We recommend using the [Rust shell script installer](https://www.rust-lang.org/tools/install). Installing cargo from your package manager (e.g. `apt`) is not recommended as the packaged versions are usually too old.
 
 If you really don't want to use the shell script installer, the [Rust installation docs](https://forge.rust-lang.org/infra/other-installation-methods.html) contain instructions for many platforms.
+
+In case your Rust & cargo version are older, simply use `rustup update` to get the latest build. 
+
+#### Additional prerequisites for Linux (Debian-based distros)
+```
+sudo apt update && sudo apt install libwebkit2gtk-4.0-dev \
+    build-essential \
+    pkg-config \
+    libssl-dev \
+    libgtk-3-dev \
+    libappindicator3-dev \
+    patchelf \
+    librsvg2-dev
+```
+Without some of these you might run into issues related to gtk 
 
 #### Additional prerequisites for Windows
 
