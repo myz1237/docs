@@ -148,7 +148,7 @@ Initalise your mixnode with the following command, replacing the value of `--id`
 ```
 
 :::caution
-Please make sure you have access to the `--wallet-address` account, and download the Desktop Wallet [here](https://nymtech.net/get-involved) if you have not already done so, in order to be able to interact with your node!
+Please make sure you have access to the `--wallet-address` account, and download the Desktop Wallet [here](https://nymtech.net/download/) if you have not already done so, in order to be able to interact with your node!
 :::
 
 Your `--host` must be publicly routable on the internet in order to mix packets, and can be either an Ipv4 or IPv6 address. Your node _must_ be able to send TCP data using _both_ IPv4 and IPv6 (as other nodes you talk to may use either protocol). The `$(curl ifconfig.me)` command above returns your IP automatically using an external service. Alternatively, you can enter your IP manually wish. If you do this, remember to enter your IP **without** any port information.
@@ -216,7 +216,7 @@ Also have a look at the saved configuration files in `$HOME/.nym/mixnodes/` to s
 
 ### Describe your mixnode (optional)
 
-In order to easily identify your node via human-readable information later on in the development of the testnet when delegated staking is implemented, you can `describe` your mixnode with the following command:
+In order to easily identify your node via human-readable information later on in the development of the testnet or mainnetwhen delegated staking is implemented, you can `describe` your mixnode with the following command:
 
 ```
 ./nym-mixnode describe --id winston-smithnode
@@ -416,7 +416,7 @@ Then reboot your server and restart your mixnode.
 
 ### Checking that your node is mixing correctly
 
-Once you've started your mixnode and it connects to the testnet validator, your node will automatically show up in the 'Mixnodes' section of either the Nym Network Explorers: 
+Once you've started your mixnode and it connects to the testnet or mainnet validator, your node will automatically show up in the 'Mixnodes' section of either the Nym Network Explorers: 
 * [Mainnet](https://explorer.nymtech.net/overview) 
 * [Sandbox testnet](https://sandbox-explorer.nymtech.net/) 
 

@@ -16,7 +16,7 @@ Nym有两个主要的代码库：
 
 :::note注意
 
-本页详细介绍了如何构建Nym平台的代码。**如果你想编译和运行一个验证节点，**请点击**[这里](/docs/next/run-nym-nodes/nodes/validators)**。
+本页详细介绍了如何构建Nym平台的代码。**如果你想编译和运行一个验证节点，**请点击**[这里](/docs/stable/run-nym-nodes/nodes/validators)**。
 
 :::
 
@@ -46,27 +46,47 @@ cd nym
 git reset --hard # in case you made any changes on your branch
 git pull # in case you've checked it out before
 
-# Note: the default branch you clone from Github, `develop`, is guaranteed to be
-# broken and incompatible with the running testnet at all times. You *must*
-# `git checkout tags/v0.12.1` in order to join the testnet.
+# Note: the default branch you clone from Github, `develop`, may be
+# incompatible with both the mainnet and testnet. As such, make sure 
+# to checkout the current release: 
+# `git checkout tags/v1.0.0`.
 
-git checkout tags/v0.12.1
+git checkout tags/v1.0.0
+# this builds your binaries with mainnet configuration
 cargo build --release
+# to build your binaries with Sandbox testnet configuration, run this instead: 
+NETWORK=sandbox cargo build --release
 ```
 
 你会得到一些文件，关键的部分有：
 
-1. [混合节点](/docs/next/run-nym-nodes/nodes/mixnodes)：`nym-mixnode`
-2. [网关](/docs/next/run-nym-nodes/nodes/gateways): `nym-gateway`
-3. [websocket客户端](/docs/next/developers/develop-with-nym/websocket-client): `nym-client`
-4. [socks5客户端](/docs/next/use-external-apps/index): `nym-socks5-client`
-5. [网络请求器](/docs/next/run-nym-nodes/nodes/requester): `nym-network-requester`
-6. [网络浏览器api](/docs/next/nym-apps/network-explorer): `explorer-api`
+1. [混合节点](/docs/stable/run-nym-nodes/nodes/mixnodes)：`nym-mixnode`
+2. [网关](/docs/stable/run-nym-nodes/nodes/gateways): `nym-gateway`
+3. [websocket客户端](/docs/stable/developers/develop-with-nym/websocket-client): `nym-client`
+4. [socks5客户端](/docs/stable/use-external-apps/index): `nym-socks5-client`
+5. [网络请求器](/docs/stable/run-nym-nodes/nodes/requester): `nym-network-requester`
+6. [网络浏览器api](/docs/stable/nym-apps/network-explorer): `explorer-api`
 
-仓库还包含两个在这个过程中没有构建的Typescript应用程序：[Nym Wallet](docs/next/nym-apps/wallet)和[Network Explorer UI](docs/next/nym-apps/network-explorer) ，这两样东西都可以按照它们各自文档上的说明来安装。
+仓库还包含两个在这个过程中没有构建的Typescript应用程序：[Nym Wallet](docs/stable/nym-apps/wallet)和[Network Explorer UI](docs/stable/nym-apps/network-explorer) ，这两样东西都可以按照它们各自文档上的说明来安装。
 
 :::note注意
 
 你不能从GitHub发布页面上的.zip或.tar.gz归档文件进行安装 -- Nym的构建脚本在编译时会自动将当前git提交的哈希值包含在二进制文件中，所以如果你使用归档代码（这并不是一个Git仓库），构建将会失败。用`git clone`代替从github上查看代码。
 
 :::
+
+### 启用Ethereum功能构建Nym（可选项）
+
+如果有用户想要使用基本带宽凭证（BBCs），那么他们必须以稍微不同的方式构建各种二进制文件。
+
+:::warning警告
+目前这是一个可选的功能，用户也可以在没有这些设置下使用混合网络。
+:::
+
+要在启用这些功能的情况下构建代码库，请讲前面指南中的`cargo build --release`命令替换为：
+
+```
+cargo build --release --features eth
+```
+
+这个标识会在编译和构建`nym-client`, `nym-socks5-client`和`gateway`二进制文件时启用了`eth`功能。这些特性算是一种设置：BBC会在客户端和网关在运行时创建连接并通过混合网络发送数据包，我们很快会有一篇博文解释这些功能。

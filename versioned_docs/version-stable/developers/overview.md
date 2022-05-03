@@ -23,7 +23,7 @@ Mixnets give strong privacy guarantees against third-party observers.
 
 It is apparent to any external network adversary that a given machine has connected to Nym infrastructure. Beyond that, it should not be possible to infer what activity is taking place unless there are observable network side effects (i.e. a Service Provider that makes network requests on behalf of a Nym client).
 
-Since the network has only just reached the level that users can start to build meaninful applications on top of it, there's not much in the way of guides or how tos yet - these will be coming in the immediate future, so keep your eyes peeled! 
+Since the network has only just reached the level that users can start to build meaningful applications on top of it, there's not much in the way of guides or how tos yet - these will be coming in the immediate future, so keep your eyes peeled! 
 				
 ## Hack on nodes
 If you're wanting to develop on top of the infrastructure code itself, and start adding additional features to existing nodes, check out the [Nym github repository](https://github.com/nymtech/nym). If you want to get to grips with running a node before starting this, check out the [Node Operators](/docs/stable/run-nym-nodes/pre-built-binaries) section of these docs for more.  

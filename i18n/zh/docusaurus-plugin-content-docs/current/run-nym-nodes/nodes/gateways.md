@@ -5,11 +5,9 @@ hide_title: false
 title: 网关
 ---
 
-#  
-
 :::note注意
 
-Nym网关是在[构建Nym](/docs/next/run-nym-nodes/build-nym/)章节构建的。如果你还没有构建Nym但想运行这里的代码，请先去之前的章节。
+Nym网关是在[构建Nym](/docs/stable/run-nym-nodes/build-nym/)章节构建的。如果你还没有构建Nym但想运行这里的代码，请先去之前的章节。
 
 :::
 
@@ -39,11 +37,44 @@ Nym平台代码中包含的默认网关的实现可以保存数据包，以便�
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.12.1)
+             (gateway - version 1.0.0)
 
+    
+nym-gateway 1.0.0
+Nymtech
 
+Build Timestamp:    2022-04-27T15:11:59.359957641+00:00
+Build Version:      1.0.0
+Commit SHA:         a2313a457cf168833c28de202349e55df0106996
+Commit Date:        2022-04-27T15:05:38+00:00
+Commit Branch:      release/1.0.0
+rustc Version:      1.60.0
+rustc Channel:      stable
+cargo Profile:      release
 
-usage: --help to see available options.
+USAGE:
+    nym-gateway <SUBCOMMAND>
+
+OPTIONS:
+    -h, --help
+            Print help information
+
+    -V, --version
+            Print version information
+
+SUBCOMMANDS:
+    help
+            Print this message or the help of the given subcommand(s)
+    init
+            Initialise the gateway
+    node-details
+            Show details of this gateway
+    run
+            Starts the gateway
+    sign
+            Sign text to prove ownership of this mixnode
+    upgrade
+            Try to upgrade the gateway
 
 ```
 
@@ -55,52 +86,73 @@ usage: --help to see available options.
 它应该返回如下内容：
 
 ```
-
       _ __  _   _ _ __ ___
      | '_ \| | | | '_ \ _ \
      | | | | |_| | | | | | |
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.12.1)
+             (gateway - version 1.0.0)
 
     
 nym-gateway-init 
 Initialise the gateway
 
 USAGE:
-    nym-gateway init [FLAGS]  [OPTIONS] --host <host> --id <id> --wallet-address <wallet-address>
-
-FLAGS:
-    -h, --help            Prints help information
-
-    -V, --version         Prints version information
+    nym-gateway init [OPTIONS] --id <ID> --host <HOST> --wallet-address <WALLET_ADDRESS> --mnemonic <MNEMONIC>
 
 OPTIONS:
-        --announce-host <announce-host>      The host that will be reported to the directory server
-        --clients-port <clients-port>        The port on which the gateway will be listening for clients gateway-
-                                             requests
-        --datastore <datastore>              Path to sqlite database containing all gateway persistent data
-        --host <host>                        The custom host on which the gateway will be running for receiving sphinx packets
-        --id <id>                            Id of the gateway we want to create config for.
-        --mix-port <mix-port>                The port on which the gateway will be listening for sphinx packets
-        --mnemonic <mnemonic>                Cosmos wallet mnemonic
-        --validator-apis <validator-apis>    Comma separated list of endpoints of the validators APIs
-        --validators <validators>            Comma separated list of endpoints of the validator
-        --wallet-address <wallet-address>    The wallet address you will use to bond this gateway, e.g.
-                                             nymt1z9egw0knv47nmur0p8vk4rcx59h9gg4zuxrrr9
+        --announce-host <ANNOUNCE_HOST>
+            The host that will be reported to the directory server
 
+        --clients-port <CLIENTS_PORT>
+            The port on which the gateway will be listening for clients gateway-requests
+
+        --datastore <DATASTORE>
+            Path to sqlite database containing all gateway persistent data
+
+    -h, --help
+            Print help information
+
+        --host <HOST>
+            The custom host on which the gateway will be running for receiving sphinx packets
+
+        --id <ID>
+            Id of the gateway we want to create config for
+
+        --mix-port <MIX_PORT>
+            The port on which the gateway will be listening for sphinx packets
+
+        --mnemonic <MNEMONIC>
+            Cosmos wallet mnemonic needed for double spending protection
+
+        --validator-apis <VALIDATOR_APIS>
+            Comma separated list of endpoints of the validators APIs
+
+        --wallet-address <WALLET_ADDRESS>
+            The wallet address you will use to bond this gateway, e.g.
+            nymt1z9egw0knv47nmur0p8vk4rcx59h9gg4zuxrrr9
 ```
+
+:::note注意
+启用`eth`功能构建Nym文件的用户会在控制台看到额外的参数标识。
+:::
 
 下面的命令返回你当前IP上的一个`id`名为`supergateway`的网关：
 
 ```
- ./nym-gateway init --id supergateway --host $(curl ifconfig.me) --wallet-address <wallet_address>
+./nym-gateway init --id supergateway --host $(curl ifconfig.me) --wallet-address <WALLET_ADDRESS> --mnemonic <MNEMONIC> 
 ```
 
 上面的`$(curl ifconfig.me)`命令会使用外部服务自动返回你的IP，或者，你也可以手动输入你的IP。如果你这样做，记住要输入你的IP但**不包括**任何端口信息。
 
 你的网关**必须**要能寻址IPv6，这在许多ISP中是不好找的。因此，在路由器后面运行网关是很难办到的，我们强烈建议你在VPS上运行你的网关，加入IPv6连接将有助于保持更好的正常运行时间和连接。
+
+启用`eth`功能的用户需要添加额外的参数来初始化网关：
+
+```
+./nym-gateway init --id supergateway --host $(curl ifconfig.me) --wallet-address <WALLET_ADDRESS> --eth-endpoint <ETH_ENDPOINT> --mnemonic <MNEMONIC>
+```
 
 记得通过Nym钱包绑定你的节点，可以在[这里](https://github.com/nymtech/nym/releases/)下载，这是区块链识别你的节点和它的软件版本，并将你的网关纳入混合网络所必需的。
 
@@ -117,38 +169,33 @@ OPTIONS:
 输出结果：
 
 ```
- ./nym-gateway run --id supergateway
-
-
       _ __  _   _ _ __ ___
      | '_ \| | | | '_ \ _ \
      | | | | |_| | | | | | |
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.12.1)
+             (gateway - version 1.0.0)
 
-
+    
 Starting gateway supergateway...
-Public sphinx key: Gk1WYjVAGuyMFitJGxUGKH3TuvFvKx6B9amP7kzbFrSe
 
-Public identity key: 398BwaVTnnA4Drv878Znmdiat1fGbQ1qgzxd3rZEfqRA
-
-Validator servers: ["http://sandbox-validator.nymtech.net:1317"]
-Listening for incoming packets on 172.105.67.104
-Announcing the following address: 172.105.67.104
-Inboxes directory is: "/home/nym/.nym/gateways/supergateway/data/inboxes"
-Clients ledger is stored at: "/home/nym/.nym/gateways/supergateway/data/client_ledger.sled"
- 2021-07-20T15:08:36.751Z INFO  nym_gateway::node > Starting nym gateway!
- 2021-07-20T15:08:36.849Z INFO  nym_gateway::node > Starting mix packet forwarder...
- 2021-07-20T15:08:36.849Z INFO  nym_gateway::node > Starting clients handler
- 2021-07-20T15:08:36.850Z INFO  nym_gateway::node > Starting mix socket listener...
- 2021-07-20T15:08:36.850Z INFO  nym_gateway::node::mixnet_handling::receiver::listener > Running mix listener on "172.105.67.104:1789"
- 2021-07-20T15:08:36.850Z INFO  nym_gateway::node::mixnet_handling::receiver::listener > Starting mixnet listener at 172.105.67.104:1789
- 2021-07-20T15:08:36.850Z INFO  nym_gateway::node                                      > Starting client [web]socket listener...
- 2021-07-20T15:08:36.850Z INFO  nym_gateway::node::client_handling::websocket::listener > Starting websocket listener at 172.105.67.104:9000
- 2021-07-20T15:08:36.850Z INFO  nym_gateway::node                                       > Finished nym gateway startup procedure - it should now be able to receive mix and client traffic!
-
+To bond your gateway you will need to install the Nym wallet, go to https://nymtech.net/get-involved and select the Download button.
+Select the correct version and install it to your machine. You will need to provide the following: 
+ 
+Identity Key: 6jWSJZsQ888jwzi1CBfkHefiDdUEjgwfeMfJU4RNhDuk
+Sphinx Key: HbqYJwjmtzDi4WzGp7ehj8Ns394sRvJnxtanX28upon
+Owner Signature: wRKxr1CnoyBB9AYPSaXgE4dCP757ffMz5gkja8EKaYR82a63FK9HYV3HXZnLcSaNXkzN3CJnxG2FREv1ZE9xwvx
+Host: 62.240.134.46 (bind address: 62.240.134.46)
+Version: 1.0.0
+Mix Port: 1789, Clients port: 9000
+Data store is at: "/home/mx/.nym/gateways/supergateway/data/db.sqlite"
+ 2022-04-27T16:04:33.831Z INFO  nym_gateway::node > Starting nym gateway!
+ 2022-04-27T16:04:34.268Z INFO  nym_gateway::node > Starting mix packet forwarder...
+ 2022-04-27T16:04:34.269Z INFO  nym_gateway::node > Starting mix socket listener...
+ 2022-04-27T16:04:34.269Z INFO  nym_gateway::node::mixnet_handling::receiver::listener > Running mix listener on "62.240.134.46:1789"
+ 2022-04-27T16:04:34.269Z INFO  nym_gateway::node                                      > Starting client [web]socket listener...
+ 2022-04-27T16:04:34.269Z INFO  nym_gateway::node                                      > Finished nym gateway startup procedure - it should now be able to receive mix and client traffic!
 ```
 
 如果你想检查你的网关的版本，可以运行： 
@@ -160,26 +207,16 @@ Clients ledger is stored at: "/home/nym/.nym/gateways/supergateway/data/client_l
 这将打印出关于你的节点的各种信息：
 
 ```
-
       _ __  _   _ _ __ ___
      | '_ \| | | | '_ \ _ \
      | | | | |_| | | | | | |
      |_| |_|\__, |_| |_| |_|
             |___/
 
-             (gateway - version 0.12.1)
+             (gateway - version 1.0.0)
 
     
-Nym Mixnet Gateway 
-Build Timestamp:    2021-12-17T16:59:54.243831464+00:00
-Build Version:      0.12.1
-Commit SHA:         96aa814a6106d6d5bbc1245cdc21b5b554d47b5f
-Commit Date:        2021-12-17T14:30:04+00:00
-Commit Branch:      detached HEAD
-rustc Version:      1.56.1
-rustc Channel:      stable
-cargo Profile:      release
-
+nym-gateway 1.0.0
 ```
 
 ### 配置你的防火墙
@@ -213,7 +250,7 @@ sudo ufw status
 
 ```ini
 [Unit]
-Description=Nym Gateway (0.12.1)
+Description=Nym Gateway (1.0.0-rc.1)
 StartLimitInterval=350
 StartLimitBurst=10
 
@@ -260,6 +297,22 @@ systemctl daemon-reload
 ```
 
 这会让你的操作系统知道可以重新加载服务配置了。
+
+### 指标
+
+目前，这只是网关的一个指标的端点。它可以通过`curl`访问：
+
+```
+# For gateways on the Sandbox testnet
+curl https://sandbox-validator.nymtech.net/api/v1/status/gateway/<GATEWAY_ID>/core-status-count
+# For gateways on the Mainnet
+curl https://validator.nymtech.net/api/v1/status/gateway/<GATEWAY_ID>/core-status-count
+```
+
+该端点返回你的网关被选入奖励集中并收到1000个数据包的次数，然后这些数据包会被网络监视器用来测试网络的其他部分。
+
+- `identity`: 网关的身份密钥。
+- `count`：它被用于网络测试的次数。
 
 ### 网关节点参考表
 

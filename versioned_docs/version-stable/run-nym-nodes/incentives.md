@@ -23,6 +23,7 @@ If you are technically-minded, feel run a gateway or mixnode! We recommend peopl
 In the future you will also be able to earn by spinning up a service provider if you want to serve the network differently, and reimburse the service credentials users pay you for using your service. Service credentials will be able to be reimbursed for `NYM` from Nyx blockchain validators. 
 
 ## Sandbox Testnet 
+
 Sandbox is not incentivized but it includes `NYMT` test-tokens designed to mimic the tokenomics of the Nym mainnet. `NYMT`s have no real world utility but node operators or delegators will receive `NYMT`s to see how the economics, reward sharing and other mechanisms of the Nym mainnet works.
 
 :::caution
@@ -84,5 +85,4 @@ Delegate with stake `s` recieves:
 
 
 where `s'` is stake `s` scaled over total token circulating supply.
-
 

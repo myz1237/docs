@@ -25,7 +25,17 @@ error: build failed
 
 ### 我怎样才能知道我的节点已经开始运行并混合了流量？
 
-首先检查测试网[数据面板](https://sandbox-explorer.nymtech.net/)的'Mixnodes'部分，并输入你的 **identity key**（身份密钥），你应该看到你的节点。另外，你也可以查看社区成员Evgeny Garanin在[Nodes Guru](https://nodes.guru)上创建的[排行榜界面](https://nodes.guru/nym/leaderboard)。
+首先检查Nym浏览器的'Mixnodes'部分:
+
+* [主网](https://explorer.nymtech.net/overview) 
+* [Sandbox测试网](https://sandbox-explorer.nymtech.net/) 
+
+输入你的 **identity key**（身份密钥），查看'mixnode stats'和'uptime story'章节
+
+另外，还有两个社区浏览器，由[Nodes Guru](https://nodes.guru)创建：
+
+* [主网](https://mixnet.explorers.guru/)
+* [Sandbox测试网](https://sandbox.mixnet.explorers.guru/)
 
 如果你想了解更多的信息，或者你的节点没有显示出来，但你想仔细检查，这里有一些关于如何检查节点是否被正确配置的例子。
 
@@ -165,7 +175,7 @@ sudo ufw status
 
 #### 不正确的绑定信息
 
-检查你在[网页钱包界面](https://sandbox-wallet.nymtech.net/)中绑定混合节点时提供的信息是否正确。如果有问题，请解除绑定，然后再重新绑定你的节点！
+检查你在[网页钱包界面](https://nymtech.net/token//)中绑定混合节点时提供的信息是否正确。如果有问题，请解除绑定，然后再重新绑定你的节点！
 
 #### 缺少`announce-host`标志
 

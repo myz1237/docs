@@ -311,7 +311,7 @@ In the file `$HOME/.${NYM_APP_NAME}/config/app.toml`, set the following values:
       minimum-gas-prices = "0.025unymt" 
     </pre>
     <pre>
-      enable = true` in the `[api]` section to get the API server running
+      enable = true in the `[api]` section to get the API server running
     </pre>
   </TabItem>
     <TabItem value="mainnet" label="Nyx (Mainnet)">
