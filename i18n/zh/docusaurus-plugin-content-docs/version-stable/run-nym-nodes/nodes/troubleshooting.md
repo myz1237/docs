@@ -131,7 +131,7 @@ curl https://sandbox-explorer.nymtech.net/data/mixnodes.json | jq -r '.[].mix_no
 
 #### 检查测试网的API
 
-我们目前建立了一个API，用于返回当前网络的指标。有两个端点可以ping到关于你的混合节点的信息，`report`和`history`。在 [混合节点指标文档](docs/stable/run-nym-nodes/nodes/mixnodes) 中找到更多相关信息。
+我们目前建立了一个API，用于返回当前网络的指标。有两个端点可以ping到关于你的混合节点的信息，`report`和`history`。在 [混合节点指标文档](/docs/stable/run-nym-nodes/nodes/mixnodes#获取混合节点指标) 中找到更多相关信息。
 
 ### 为什么我的节点没有混合数据包？
 
@@ -300,13 +300,13 @@ sudo systemctl status nym-mixnode
 thread 'tokio-runtime-worker' panicked at 'Failed to create TCP listener: Os { code: 99, kind: AddrNotAvailable, message: "Cannot assign requested address" }'
 ```
 
-那么你需要在启动时使用`---announce-host <public ip>`和`--host <local ip>`这两个标志。这个问题的出现是因为你使用了像AWS或谷歌云这样的供应商，或者你的VPS可用绑定地址与公共IP地址不一样（参见[通过谷歌和AWS的虚拟IP和主机](docs/stable/run-nym-nodes/nodes/mixnodes)以获得更多关于这个问题的信息）。
+那么你需要在启动时使用`---announce-host <public ip>`和`--host <local ip>`这两个标志。这个问题的出现是因为你使用了像AWS或谷歌云这样的供应商，或者你的VPS可用绑定地址与公共IP地址不一样（参见[通过谷歌和AWS的虚拟IP和主机](/docs/stable/run-nym-nodes/nodes/mixnodes#通过谷歌和aws的虚拟ip和主机混合节点)以获得更多关于这个问题的信息）。
 
 #### `rocket::launch` 警告
 
 这些警告不是问题，请忽略它们。Rocket是一个rust的web框架，我们用它来为混合节点提供`/verloc`和`/description`的http API。
 
-在[混合节点指标文档](docs/stable/run-nym-nodes/nodes/mixnodes)中查看更多相关信息。
+在[混合节点指标文档](/docs/stable/run-nym-nodes/nodes/mixnodes#获取混合节点指标)中查看更多相关信息。
 
 Rocket默认运行在端口`8000`，虽然在测试网阶段，我们需要Rocket可以通过这个端口，但在未来，可能允许大家自定义该端口。
 

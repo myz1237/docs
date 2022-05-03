@@ -128,7 +128,7 @@ curl https://sandbox-explorer.nymtech.net/data/mixnodes.json | jq -r '.[].mix_no
 
 #### Check with testnet API
 
-We currently have an API set up returning our metrics tests of the network. There are two endpoints to ping for information about your mixnode, `report` and `history`. Find more information about this in the [Mixnodes metrics documentation](docs/stable/run-nym-nodes/nodes/mixnodes).
+We currently have an API set up returning our metrics tests of the network. There are two endpoints to ping for information about your mixnode, `report` and `history`. Find more information about this in the [Mixnodes metrics documentation](/docs/stable/run-nym-nodes/nodes/mixnodes#metrics).
 
 ### Why is my node not mixing any packets?
 
@@ -169,7 +169,7 @@ sudo ufw status
 ```
 
 #### Incorrect bonding information
-
+<!-- The link of interface should be removed -->
 Check that you have provided the correct information when bonding your mixnode in the web wallet [interface](https://sandbox-wallet.nymtech.net/). When in doubt, unbond and then rebond your node!
 
 #### Missing `announce-host` flag
@@ -296,13 +296,13 @@ If you are running into issues with an error including the following:
 ```
 thread 'tokio-runtime-worker' panicked at 'Failed to create TCP listener: Os { code: 99, kind: AddrNotAvailable, message: "Cannot assign requested address" }'
 ```
-
-Then you need to `--announce-host <public ip>` and ``--host <local ip>` on startup. This issue arises because of your use of a provider like AWS or Google Cloud, and the fact that your VPS' available bind address is not the same as the public IP address (see [Virtual IPs and hosting via Google and AWS](docs/stable/run-nym-nodes/nodes/mixnodes) for more information on this issue).
+<!--Replace the link with a new one-->
+Then you need to `--announce-host <public ip>` and ``--host <local ip>` on startup. This issue arises because of your use of a provider like AWS or Google Cloud, and the fact that your VPS' available bind address is not the same as the public IP address (see [Virtual IPs and hosting via Google and AWS](/docs/stable/run-nym-nodes/nodes/mixnodes#virtual-ips-and-hosting-via-google--aws) for more information on this issue).
 
 #### `rocket::launch` warnings
 These warnings are not an issue, please ignore them. Rocket is a web framework for rust which we are using to provide mixnodes with `/verloc` and `/description` http APIs.
-
-Find more information about this in the [Mixnodes metrics documentation](docs/stable/run-nym-nodes/nodes/mixnodes).
+<!--Replace the link with a new one-->
+Find more information about this in the [Mixnodes metrics documentation](/docs/stable/run-nym-nodes/nodes/mixnodes#metrics).
 
 Rocket runs on port `8000` by default. Although at this stage of the testnet we need Rocket to be reachable via this port, in the future customization of the particular port it uses will be possible.
 

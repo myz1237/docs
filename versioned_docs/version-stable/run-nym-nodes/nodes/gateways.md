@@ -157,7 +157,7 @@ Remember to bond your node via the Nym wallet, which can be downloaded [here](ht
 ### Running your gateway
 
 The `run` command runs the gateway.
-
+<!--Shall we use code tag in this command?-->
 Example:
 
 `./nym-gateway run --id supergateway`

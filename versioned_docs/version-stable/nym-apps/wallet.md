@@ -19,7 +19,7 @@ You can download it for Mac, Windows, or Linux.
 ### Bypassing security warnings
 
 On Windows you will see a security warning pop up when you attempt to run the wallet. We are in the process of getting app store keys from Microsoft so that this doesn't happen. See the section below for details on steps to bypass these. 
-
+<!--Shall we add an instruction for MAC users?-->
 #### Linux 
 
 You will need to `chmod +x` the AppImage in the terminal (or give it execute permission in your file browser) before it will run. 

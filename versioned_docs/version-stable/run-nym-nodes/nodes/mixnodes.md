@@ -146,7 +146,7 @@ Initalise your mixnode with the following command, replacing the value of `--id`
 ```
 ./nym-mixnode init --id winston-smithnode --host $(curl ifconfig.me) --wallet-address <wallet-address>
 ```
-
+<!--Change the link of Desktop Wallet-->
 :::caution
 Please make sure you have access to the `--wallet-address` account, and download the Desktop Wallet [here](https://nymtech.net/download/) if you have not already done so, in order to be able to interact with your node!
 :::

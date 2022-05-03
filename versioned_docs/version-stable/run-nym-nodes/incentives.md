@@ -39,7 +39,7 @@ There is a `NYMT` faucet [here](https://faucet.nymtech.net/). These tokens can b
 :::caution
 If for any reason you lose your mnemonic, the tokens held in your account are lost, and they will **not** be able to be returned to you. 
 :::
-
+<!--Cannot see the math symbols in dark mode-->
 ## Network Rewards
 
 Node operator and delegator rewards are determined according to the principles laid out in the section 6 of [Nym Whitepaper](https://nymtech.net/nym-whitepaper.pdf). 
